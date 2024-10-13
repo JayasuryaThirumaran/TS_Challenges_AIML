@@ -28,4 +28,3 @@ def test_visualizations():
         visualize_distributions(df)
     except Exception as e:
         pytest.fail(f"Visualization failed with exception: {e}")
-
