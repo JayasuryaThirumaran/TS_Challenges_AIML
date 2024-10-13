@@ -3,31 +3,66 @@ import seaborn as sns
 import numpy as np
 import matplotlib.pyplot as plt         #  importing some basic libraries to work with the dataset and for visualization
 
-# Load the dataset
-df = pd.read_csv('data/Bank Customer Churn Prediction.csv')
 
-print(df.isnull().sum())                # check for missing values
 
-print(df.describe())                    # generating summary statistics
+def load_data(filepath):
+    """
+    Load the dataset into a pandas DataFrame.
+    """
+    df = pd.read_csv(filepath)
+    return df
 
-print(df.mode())                        # check the mode value
+def check_missing_values(df):
+    """
+    Check for missing values in the DataFrame.
+    """
+    missing = df.isnull().sum()
+    print("Missing Values:\n", missing)
 
-# Visualize the distribution of Age
-sns.histplot(df['age'], kde=True)
-plt.title('Distribution of Age')
-plt.show()
+def generate_summary_statistics(df):
+    """
+    Generate summary statistics for key variables.
+    """
+    summary = df.describe()
+    print("Summary Statistics:\n", summary)
 
-# Visualize the distribution of Balance
-sns.histplot(df['balance'], kde=True)
-plt.title('Distribution of Balance')
-plt.show()
+def visualize_distributions(df):
+    """
+    Visualize distributions of age, balance, credit_score, and estimated_salary.
+    """
+    plt.figure(figsize=(12, 10))
+    
+    plt.subplot(2, 2, 1)
+    sns.histplot(df['Age'], kde=True)
+    plt.title('Age Distribution')
+    
+    plt.subplot(2, 2, 2)
+    sns.histplot(df['Balance'], kde=True)
+    plt.title('Balance Distribution')
+    
+    plt.subplot(2, 2, 3)
+    sns.histplot(df['Credit_Score'], kde=True)
+    plt.title('Credit Score Distribution')
+    
+    plt.subplot(2, 2, 4)
+    sns.histplot(df['Estimated_Salary'], kde=True)
+    plt.title('Estimated Salary Distribution')
+    
+    plt.tight_layout()
+    plt.show()
 
-# Visualize the distribution of Credit Score
-sns.histplot(df['credit_score'], kde=True)
-plt.title('Distribution of Credit Score')
-plt.show()
+def main():
+    # Load data
+    df = load_data('data/bank_churn.csv')
+    
+    # Check for missing values
+    check_missing_values(df)
+    
+    # Generate summary statistics
+    generate_summary_statistics(df)
+    
+    # Visualize distributions
+    visualize_distributions(df)
 
-# Visualize the distribution of Estimated Salary
-sns.histplot(df['estimated_salary'], kde=True)
-plt.title('Distribution of Estimated Salary')
-plt.show()
+if __name__ == "__main__":
+    main()
