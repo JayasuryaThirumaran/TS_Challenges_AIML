@@ -18,8 +18,8 @@ def test_missing_values():
 def test_summary_statistics():
     df = load_data('data/bank_churn.csv')
     summary = df.describe()
-    assert 'Age' in summary.columns, "Summary statistics should include 'Age'"
-    assert 'Balance' in summary.columns, "Summary statistics should include 'Balance'"
+    assert 'age' in summary.columns, "Summary statistics should include 'Age'"
+    assert 'balance' in summary.columns, "Summary statistics should include 'Balance'"
 
 def test_visualizations():
     df = load_data('data/bank_churn.csv')
@@ -28,3 +28,4 @@ def test_visualizations():
         visualize_distributions(df)
     except Exception as e:
         pytest.fail(f"Visualization failed with exception: {e}")
+
